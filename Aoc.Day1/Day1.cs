@@ -14,7 +14,8 @@ public class Day1
 
     String? line;
     string pattern = @"(\d)";
-    string pattern2 = @"(one|two|three|four|five|six|seven|eight|nine|\d)";
+    string pattern2 = @"(?=(one|two|three|four|five|six|seven|eight|nine|\d))";
+    // string pattern2 = @"(one|two|three|four|five|six|seven|eight|nine|\d)";
     Regex regex;
     Regex regex2;
     public Day1()
@@ -39,19 +40,22 @@ public class Day1
             {
                 // Part 1
 
-                MatchCollection matches = regex.Matches(line);
-                Match first = matches.First();
-                Match last = matches.Last();
-                Console.WriteLine("{0}{1}", first.Value, last.Value);
-                sum = sum + Int32.Parse(first.Value + last.Value);
-                // sum = sum + (ParseText(first.Value) * 10) + ParseText(last.Value);
+                // MatchCollection matches = regex.Matches(line);
+                // Match first = matches.First();
+                // Match last = matches.Last();
+                // // Console.WriteLine("{0}{1}", first.Value, last.Value);
+                // // sum = sum + Int32.Parse(first.Value + last.Value);
+                // sum = sum + Int32.Parse(ParseText(first.Value) + ParseText(last.Value));
 
                 //Part 2 answer 57325 is too low!
+                // 59769 is too high!
+                // Anser is 57345
                 MatchCollection matches2 = regex2.Matches(line);
-                Match f = matches2.First();
-                Match l = matches2.Last();
-                Console.WriteLine("{0} {1}: {2} {3}", f.Value, l.Value, ParseText(f.Value), ParseText(l.Value));
+                
+                Group f = matches2.First().Groups[1];
+                Group l = matches2.Last().Groups[1];
                 sum2 = sum2 + Int32.Parse(ParseText(f.Value) + ParseText(l.Value));
+                Console.WriteLine("{0}: {1} {2}: {3}{4}: sum {5}", line, f.Value, l.Value, ParseText(f.Value), ParseText(l.Value), sum2);
 
                 //Read the next line
                 line = sr.ReadLine();
@@ -109,5 +113,23 @@ public class Day1
         }
 
         return value;
+    }
+
+    public void example() {
+        string pattern = @"(?=(one|two|three|four|five|six|seven|eight|nine|\d))";
+        string input = @"ctwoneqcmffptjzpone3brdtb4bjnzqx
+eight4tjfvrvlcfgdtk61fouroneightjvf
+43eightnvdrthree1eightoneggrdmnp
+eight4tjfvrvlcfgdtk61fouroneightjv3f";
+        RegexOptions options = RegexOptions.Multiline;
+        
+        foreach (Match m in Regex.Matches(input, pattern, options))
+        {
+            Console.WriteLine("Match: '{0}' found at index {1}. Value:{2}.\nGroup", m.Value, m.Index, m.Groups[1].Value);
+            foreach (Group group in m.Groups)
+            {
+                Console.WriteLine("\t{0} value at index {1}.", group.Value, group.Index);
+            }
+        }
     }
 }
