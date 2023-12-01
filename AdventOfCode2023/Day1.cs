@@ -31,7 +31,7 @@ public class Day1
         try
         {
             // StreamReader sr = new StreamReader("Files\\Day1Sample2.txt");
-            StreamReader sr = new StreamReader("Files\\Day1.txt");
+            StreamReader sr = new StreamReader("Files/Day1.txt");
             int sum = 0;
             int sum2 = 0;
             line = sr.ReadLine();
