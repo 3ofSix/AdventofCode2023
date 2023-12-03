@@ -11,4 +11,8 @@
     <Using Include="System.Console" Static="true" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Pidgin" Version="3.2.2" />
+  </ItemGroup>
+
 </Project>

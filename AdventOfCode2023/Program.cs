@@ -1,21 +1,36 @@
 ﻿using ThreeOfSix.Adventofcode;
 
-Day1 day1 = new Day1();
-day1.Solve();
-// day1.example();
+// Day1 day1 = new Day1();
+// day1.Solve();
 
-// Action<string> printLine;
-// string filePath = "Files/Day1Sample2.txt";
+// Day2 day2 = new Day2();
 
-// printLine = Delageter;
-// printLine += WriteWithExtraStuff;
+using System;
 
-// Puzzle.ReadByLine(filePath, printLine);
 
-// void Delageter(string line) {
-//         WriteLine(line); 
-// }
 
-// void WriteWithExtraStuff(string line) {
-//     WriteLine("This is the line {0}", line);
-// }
+public class Person
+{
+    public Person(string firstName, string lastName)
+    {
+        fname = firstName;
+        lname = lastName;
+    }
+
+    private string fname;
+    private string lname;
+
+    public override string ToString() => $"{fname} {lname}".Trim();
+    
+    public void DisplayName() => Console.WriteLine(ToString());
+}
+
+class Example
+{
+    static void Main()
+    {
+        Person p = new Person("Mandy", "Dejesus");
+        Console.WriteLine(p);
+        p.DisplayName();
+    }
+}
